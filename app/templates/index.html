@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %}Weather App{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">Weather for {{ city }}</h5>
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    <div class="mb-3">
+                        <label for="city" class="form-label">Enter city name:</label>
+                        <input type="text" class="form-control" id="city" name="city" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Get Weather</button>
+                </form>
+            </div>
+            {% if temp_celsius %}
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <span>Temperature</span>
+                    <span>{{ temp_celsius|round(2) }}°C, {{ temp_fahrenheit|round(2) }}°F</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <span>Feels Like</span>
+                    <span>{{ feels_like_celsius|round(2) }}°C, {{ feels_like_fahrenheit|round(2) }}°F</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <span>Wind Speed</span>
+                    <span>{{ wind_speed }} m/s</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <span>Humidity</span>
+                    <span>{{ humidity }}%</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <span>Description</span>
+                    <span>{{ description }}</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <span>Sunrise</span>
+                    <span>{{ sunrise_time }}</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <span>Sunset</span>
+                    <span>{{ sunset_time }}</span>
+                </li>
+            </ul>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
